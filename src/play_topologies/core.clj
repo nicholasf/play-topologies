@@ -1,6 +1,6 @@
 (ns play-topologies.core
 	(:import [backtype.storm StormSubmitter LocalCluster])
-	(:use [backtype.storm clojure config])
+	(:use [backtype.storm clojure config log])
 	(:gen-class))
 
 (defspout clock-spout ["tick tock"]
@@ -11,7 +11,8 @@
 			(print "\n\n ---- clock-spout ready to emit current second ...")
 			;(emit-spout! collector [(System/currentTimeMillis)])
 			(emit-spout! collector [(System/currentTimeMillis)])
-			)
+			(log-message "test log message each second")
+		)
 		(ack [id]
 			;;reliable spout
 		)))
@@ -21,12 +22,13 @@
 	(bolt
 		(execute [tuple]
 			(let [millis  (.getLong tuple 0)]
-				(print millis))
+				(print millis)
+				(log-message millis)	
+			)
 			)))
 (defn mk-topology []
 	(topology
 		{"1" (spout-spec clock-spout)}
-
 		{"2" (bolt-spec {"1" :shuffle} second-logger :p 2)}
 	))
 
