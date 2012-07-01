@@ -1,4 +1,4 @@
-(ns topologies.test.core
+(ns play-topologies.test.core
   (:use [topologies.core])
   (:use [clojure.test]))
 
