@@ -33,8 +33,8 @@
 (defn run-local! []
   (let [cluster (LocalCluster.)]
     (.submitTopology cluster "time-topology" {TOPOLOGY-DEBUG true} (mk-topology))
-    (Thread/sleep 10000)
-    (.shutdown cluster)
+;    (Thread/sleep 10000)
+;    (.shutdown cluster)
     ))
 
 (defn submit-topology! [name]
