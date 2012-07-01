@@ -4,5 +4,5 @@
   :jvm-opts ["-Djava.library.path=/usr/local/lib:/opt/local/lib:/usr/lib"]
   :aot :all
   :dependencies [[org.clojure/clojure "1.3.0"]
-  				[storm "0.8.0-SNAPSHOT"]]
+  				[storm "0.7.4"]]
   )
