@@ -10,7 +10,7 @@
 			(Thread/sleep 1000)
 			(print "\n\n ---- clock-spout ready to emit current second ...")
 			;(emit-spout! collector [(System/currentTimeMillis)])
-			(emit-spout! collector ["testing!~"])
+			(emit-spout! collector [(System/currentTimeMillis)])
 			)
 		(ack [id]
 			;;reliable spout
@@ -20,8 +20,8 @@
 	[conf context collector]
 	(bolt
 		(execute [tuple]
-;			(let [millis  (.getString tuple 0)])
-			(print "****")
+			(let [millis  (.getLong tuple 0)]
+				(print millis))
 			)))
 (defn mk-topology []
 	(topology
