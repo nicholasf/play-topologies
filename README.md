@@ -1,13 +1,13 @@
-# topologies
+Just some testing with Storm pieces.
 
-FIXME: write description
+To grab deps:
 
-## Usage
+lein deps
 
-FIXME: write
+to compile:
 
-## License
+lein compile 
 
-Copyright (C) 2012 FIXME
+to run:
 
-Distributed under the Eclipse Public License, the same as Clojure.
+lein run -m play-topologies.core
