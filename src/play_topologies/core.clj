@@ -24,13 +24,14 @@
 				))))
 (defn mk-topology []
 	(topology
-		{"1" (spout-spec clock-spout)
-		"2" (bolt-spec {"1": shuffle} second-logger : p 2)
-	}))
+		{"1" (spout-spec clock-spout)}
+
+		{"2" (bolt-spec {"1" :shuffle} second-logger :p 2)}
+	))
 
 (defn run-local! []
   (let [cluster (LocalCluster.)]
-    (.submitTopology cluster "time topology" {TOPOLOGY-DEBUG true} (mk-topology))
+    (.submitTopology cluster "time-topology" {TOPOLOGY-DEBUG true} (mk-topology))
     (Thread/sleep 10000)
     (.shutdown cluster)
     ))
